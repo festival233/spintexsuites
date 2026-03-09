@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 950">
+      <defs>
+        <linearGradient id="g8" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#101114"/>
+          <stop offset="100%" stop-color="#8d6b43"/>
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="950" fill="url(#g8)"/>
+      <rect x="70" y="130" width="1060" height="680" rx="30" fill="#0f1014" opacity="0.55"/>
+      <rect x="120" y="180" width="490" height="520" rx="24" fill="#2d2f36" opacity="0.7"/>
+      <rect x="150" y="220" width="430" height="230" rx="18" fill="#e0b77b" opacity="0.18" stroke="#e0b77b" stroke-width="4"/>
+      <rect x="150" y="480" width="430" height="170" rx="18" fill="#171a20" stroke="#ffffff" stroke-opacity="0.08"/>
+      <rect x="665" y="190" width="385" height="160" rx="22" fill="#161920" stroke="#e0b77b" stroke-width="3"/>
+      <rect x="665" y="385" width="385" height="140" rx="22" fill="#161920" stroke="#ffffff" stroke-opacity="0.09"/>
+      <rect x="665" y="565" width="385" height="140" rx="22" fill="#161920" stroke="#ffffff" stroke-opacity="0.09"/>
+      <circle cx="980" cy="125" r="52" fill="#e0b77b" opacity="0.28"/>
+      <circle cx="1030" cy="780" r="85" fill="#e0b77b" opacity="0.14"/>
+      <text x="140" y="770" font-family="Inter,Arial,sans-serif" font-size="42" fill="#f5eee2">Spintex Suites Concept 08</text>
+      <text x="140" y="820" font-family="Inter,Arial,sans-serif" font-size="24" fill="#f5eee2" opacity="0.74">Luxury studio mood render · demo visual</text>
+    </svg>
