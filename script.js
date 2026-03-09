@@ -1,147 +1,188 @@
 const suites = [
+  { title: 'Executive Studio Noir', desc: 'Moody luxury palette, smart TV wall, warm cove lighting, and a polished studio layout for business and premium short stays.', image: 'assets/room-1.png', layout: 'assets/layout-1.svg' },
+  { title: 'Champagne Glow Suite', desc: 'Soft gold accents, brighter finishes, elegant wall treatment, and a room made to photograph beautifully for listings.', image: 'assets/room-2.png', layout: 'assets/layout-2.svg' },
+  { title: 'Metropolitan Sand Suite', desc: 'Neutral palette, layered textures, efficient kitchenette concept, and a calm upscale city-stay vibe.', image: 'assets/room-3.png', layout: 'assets/layout-3.svg' },
+  { title: 'Signature Bronze Studio', desc: 'Designed for guests who want boutique-hotel energy with apartment privacy and a richer luxury finish.', image: 'assets/room-4.png', layout: 'assets/layout-4.svg' },
+  { title: 'Pearl Business Loft', desc: 'A clean professional suite concept with bright styling, refined storage, and work-friendly comfort.', image: 'assets/room-5.png', layout: 'assets/layout-5.svg' },
+  { title: 'Velvet Edge Residence', desc: 'A higher-drama room concept with statement headboard styling, glossy details, and luxe date-night appeal.', image: 'assets/room-6.png', layout: 'assets/layout-6.svg' },
+  { title: 'Urban Calm Smart Suite', desc: 'Modern smart-stay setup with efficient layout flow, hospitality comfort, and premium nightly-rate potential.', image: 'assets/room-7.png', layout: 'assets/layout-7.svg' },
+  { title: 'Spintex Luxe Flagship', desc: 'Hero room concept for marketing, premium guest acquisition, launch campaigns, and top-tier listing visuals.', image: 'assets/room-8.png', layout: 'assets/layout-8.svg' }
+];
+
+const reviewPool = [
   {
-    id: 1,
-    label: 'Signature Studio 01',
-    title: 'The Gold Residence',
-    image: 'assets/suite-01.svg',
-    layout: 'assets/layout-01.svg',
-    description: 'A warm luxury studio with soft gold accents, layered lighting, an executive work nook, and a boutique-hotel feel.',
-    features: ['Queen bed concept', 'Kitchenette wall', 'Vanity + statement mirror', 'Remote-work desk', 'Warm layered cove lighting'],
-    tags: ['Luxury Studio', 'Work Friendly', 'Warm Palette']
+    title: 'Elegant, calm, and beautifully put together',
+    text: 'The lighting, finishes, and setup made it feel far more premium than a standard short-stay apartment.',
+    author: 'Ama · Business Traveler',
+    score: '5.0 rating concept'
   },
   {
-    id: 2,
-    label: 'Signature Studio 02',
-    title: 'The Noir Loft',
-    image: 'assets/suite-02.svg',
-    layout: 'assets/layout-02.svg',
-    description: 'A darker, moodier concept for guests who love sleek finishes, a cinematic bed wall, and a high-design urban feel.',
-    features: ['Dark luxury palette', 'LED feature wall', 'Compact dining counter', 'Premium bath concept', 'Private lounge corner'],
-    tags: ['Moody', 'Modern', 'Stylish']
+    title: 'Exactly the type of place I would book again',
+    text: 'It had that boutique feel with a smart layout and a polished look that works for both leisure and work trips.',
+    author: 'Kwesi · Weekend Guest',
+    score: 'Guest favorite preview'
   },
   {
-    id: 3,
-    label: 'Signature Studio 03',
-    title: 'The Sandstone Suite',
-    image: 'assets/suite-03.svg',
-    layout: 'assets/layout-03.svg',
-    description: 'A calm neutral suite designed for longer stays with a soft hospitality look and a very Ghana-meets-global polish.',
-    features: ['Neutral palette', 'Long-stay storage', 'Coffee station', 'Textured feature wall', 'Soft hospitality finish'],
-    tags: ['Neutral', 'Extended Stay', 'Calm']
-  },
-  {
-    id: 4,
-    label: 'Signature Studio 04',
-    title: 'The Skyline Room',
-    image: 'assets/suite-04.svg',
-    layout: 'assets/layout-04.svg',
-    description: 'An airy and bright suite concept with a lounge seat by the window and a polished hospitality layout.',
-    features: ['Bright open feel', 'Window lounge seat', 'Compact kitchen line', 'Mirror expansion effect', 'Premium bedding concept'],
-    tags: ['Bright', 'Airy', 'Elegant']
-  },
-  {
-    id: 5,
-    label: 'Signature Studio 05',
-    title: 'The Executive Nest',
-    image: 'assets/suite-05.svg',
-    layout: 'assets/layout-05.svg',
-    description: 'Built for the business traveler with a sharper workspace, faster flow, and an upscale executive mood.',
-    features: ['Business traveler setup', 'Desk + charging zone', 'Leather-tone seating', 'Smart TV wall', 'Fast-move layout'],
-    tags: ['Executive', 'Desk', 'Business']
-  },
-  {
-    id: 6,
-    label: 'Signature Studio 06',
-    title: 'The Pearl Retreat',
-    image: 'assets/suite-06.svg',
-    layout: 'assets/layout-06.svg',
-    description: 'A soft ivory-and-stone suite concept with spa-like bathroom energy and a premium rest-first mood.',
-    features: ['Spa mood', 'Ivory palette', 'Floating vanity concept', 'Calm lighting', 'Minimal elegant styling'],
-    tags: ['Spa Feel', 'Soft', 'Restful']
-  },
-  {
-    id: 7,
-    label: 'Signature Studio 07',
-    title: 'The Terrace Mood',
-    image: 'assets/suite-07.svg',
-    layout: 'assets/layout-07.svg',
-    description: 'A lifestyle-forward suite concept with indoor-outdoor energy, lounge flow, and strong social-media appeal.',
-    features: ['Lifestyle aesthetic', 'Indoor-outdoor mood', 'Statement bed wall', 'Compact entertaining setup', 'Instagram-friendly angles'],
-    tags: ['Lifestyle', 'Social', 'Designer']
-  },
-  {
-    id: 8,
-    label: 'Signature Studio 08',
-    title: 'The Prestige Mini',
-    image: 'assets/suite-08.svg',
-    layout: 'assets/layout-08.svg',
-    description: 'A compact but elevated room concept proving that small square footage can still flex serious luxury.',
-    features: ['Efficient footprint', 'Luxury compact design', 'Storage-smart plan', 'Statement finishes', 'Short-stay optimized'],
-    tags: ['Compact', 'Smart', 'Premium']
+    title: 'Luxury energy without feeling overdone',
+    text: 'Strong visual identity, clean styling, and the kind of room photos that would absolutely stop a scroll on Airbnb.',
+    author: 'Nadia · Design-Led Traveler',
+    score: 'Top-review concept'
   }
 ];
 
-const suiteGrid = document.getElementById('suite-grid');
-const modal = document.getElementById('suite-modal');
-const modalImage = document.getElementById('modal-image');
-const modalLabel = document.getElementById('modal-label');
-const modalTitle = document.getElementById('modal-title');
-const modalDesc = document.getElementById('modal-desc');
-const modalFeatures = document.getElementById('modal-features');
-const modalLayout = document.getElementById('modal-layout');
+const demandStates = [
+  { label: '25% of suites reserved this week', text: 'Demo demand preview only. Connect to Airbnb, Booking.com, Agoda, or your PMS later for real numbers.' },
+  { label: '50% of suites reserved for upcoming stays', text: 'This section is styled as a demand pulse preview so the site feels alive without pretending it is your live back office.' },
+  { label: 'Several guests currently viewing booking options', text: 'Use this area later for genuine live availability pulled from your channel manager or direct booking engine.' }
+];
 
-suiteGrid.innerHTML = suites.map((suite) => `
-  <article class="suite-card">
-    <img src="${suite.image}" alt="${suite.title} concept image" />
-    <div class="suite-card-content">
-      <p class="eyebrow">${suite.label}</p>
+const suiteGrid = document.getElementById('suiteGrid');
+const modal = document.getElementById('suiteModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const modalRoomImage = document.getElementById('modalRoomImage');
+const modalLayoutImage = document.getElementById('modalLayoutImage');
+const occupancyLabel = document.getElementById('occupancyLabel');
+const occupancyText = document.getElementById('occupancyText');
+const reviewTitle = document.getElementById('reviewTitle');
+const reviewText = document.getElementById('reviewText');
+const reviewAuthor = document.getElementById('reviewAuthor');
+const reviewScore = document.getElementById('reviewScore');
+const signupPopup = document.getElementById('signupPopup');
+const signupForm = document.getElementById('signupForm');
+const signupStatus = document.getElementById('signupStatus');
+
+suites.forEach((suite, index) => {
+  const card = document.createElement('article');
+  card.className = 'suite-card';
+  card.innerHTML = `
+    <img src="${suite.image}" alt="${suite.title}" />
+    <div class="suite-body">
+      <p class="eyebrow">Suite ${index + 1}</p>
       <h3>${suite.title}</h3>
-      <p>${suite.description}</p>
-      <div class="suite-meta">
-        ${suite.tags.map((tag) => `<span>${tag}</span>`).join('')}
-      </div>
+      <p>${suite.desc}</p>
       <div class="suite-actions">
-        <button type="button" data-open="${suite.id}">View Layout</button>
-        <a href="https://wa.me/13473914312?text=Hello%20Spintex%20Suites%2C%20I%20am%20interested%20in%20${encodeURIComponent(suite.title)}." target="_blank" rel="noopener">Ask About It</a>
+        <a class="inline-link" href="#" data-index="${index}" data-action="view">View suite + layout</a>
+        <a class="inline-link" href="https://wa.me/13473914312?text=Hello%20Spintex%20Suites%2C%20I%20am%20interested%20in%20${encodeURIComponent(suite.title)}" target="_blank" rel="noopener">Ask about this room</a>
       </div>
     </div>
-  </article>
-`).join('');
+  `;
+  suiteGrid.appendChild(card);
+});
 
-function openSuite(id) {
-  const suite = suites.find(item => item.id === Number(id));
-  if (!suite) return;
-
-  modalImage.src = suite.image;
-  modalImage.alt = `${suite.title} concept view`;
-  modalLabel.textContent = suite.label;
+suiteGrid.addEventListener('click', (event) => {
+  const trigger = event.target.closest('[data-action="view"]');
+  if (!trigger) return;
+  event.preventDefault();
+  const suite = suites[Number(trigger.dataset.index)];
   modalTitle.textContent = suite.title;
-  modalDesc.textContent = suite.description;
-  modalLayout.src = suite.layout;
-  modalLayout.alt = `${suite.title} layout`;
-  modalFeatures.innerHTML = suite.features.map(feature => `<li>${feature}</li>`).join('');
-
-  modal.classList.add('active');
+  modalDesc.textContent = suite.desc;
+  modalRoomImage.src = suite.image;
+  modalLayoutImage.src = suite.layout;
+  modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  modal.classList.remove('active');
-  modal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
+});
 
 document.addEventListener('click', (event) => {
-  const openId = event.target.getAttribute('data-open');
-  const closeFlag = event.target.getAttribute('data-close');
-
-  if (openId) openSuite(openId);
-  if (closeFlag) closeModal();
+  if (event.target.matches('[data-close="true"]')) {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+  if (event.target.matches('[data-popup-close="true"]')) {
+    signupPopup.classList.remove('open');
+    signupPopup.setAttribute('aria-hidden', 'true');
+    localStorage.setItem('spintex-popup-closed', 'yes');
+  }
 });
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && modal.classList.contains('active')) {
-    closeModal();
+  if (event.key === 'Escape') {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    signupPopup.classList.remove('open');
+    signupPopup.setAttribute('aria-hidden', 'true');
+  }
+});
+
+function updateDemandPulse() {
+  const state = demandStates[Math.floor(Math.random() * demandStates.length)];
+  occupancyLabel.textContent = state.label;
+  occupancyText.textContent = state.text;
+}
+
+function rotateReview() {
+  const review = reviewPool[Math.floor(Math.random() * reviewPool.length)];
+  reviewTitle.textContent = review.title;
+  reviewText.textContent = review.text;
+  reviewAuthor.textContent = review.author;
+  reviewScore.textContent = review.score;
+}
+
+updateDemandPulse();
+rotateReview();
+setInterval(updateDemandPulse, 9000);
+setInterval(rotateReview, 7000);
+
+setTimeout(() => {
+  if (!localStorage.getItem('spintex-popup-closed')) {
+    signupPopup.classList.add('open');
+    signupPopup.setAttribute('aria-hidden', 'false');
+  }
+}, 1800);
+
+const inquiryForm = document.getElementById('inquiryForm');
+const formStatus = document.getElementById('formStatus');
+
+async function submitToInquiryEndpoint(formElement, statusElement, successMessage) {
+  const formData = new FormData(formElement);
+  const payload = Object.fromEntries(formData.entries());
+
+  try {
+    const response = await fetch('/api/inquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || 'Could not send request right now.');
+    }
+
+    statusElement.textContent = successMessage;
+    formElement.reset();
+    return true;
+  } catch (error) {
+    statusElement.textContent = 'Email service is not active yet on this deployment. Add the Resend API key in Cloudflare, or use direct email and WhatsApp for now.';
+    console.error(error);
+    return false;
+  }
+}
+
+inquiryForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  formStatus.textContent = 'Sending...';
+  await submitToInquiryEndpoint(
+    inquiryForm,
+    formStatus,
+    'Message sent. Spintex Suites will receive it at spintexsuites@gmail.com.'
+  );
+});
+
+signupForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  signupStatus.textContent = 'Submitting...';
+  const ok = await submitToInquiryEndpoint(
+    signupForm,
+    signupStatus,
+    'You are on the list. Spintex Suites will receive your signup in spintexsuites@gmail.com.'
+  );
+  if (ok) {
+    localStorage.setItem('spintex-popup-closed', 'yes');
+    setTimeout(() => {
+      signupPopup.classList.remove('open');
+      signupPopup.setAttribute('aria-hidden', 'true');
+    }, 900);
   }
 });

@@ -3,184 +3,278 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Spintex Suites — luxury smart studio apartments in Spintex, Accra. Explore 8 signature suites, layouts, amenities, and direct booking contacts." />
-  <title>Spintex Suites | Luxury Smart Apartments in Accra</title>
+  <title>Spintex Suites | Luxury Smart Stays in Accra</title>
+  <meta name="description" content="Spintex Suites is a luxury boutique stay concept in Spintex, Accra featuring smart studio apartments, premium interiors, direct booking support, and listing-ready booking options." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page-glow glow-1"></div>
-  <div class="page-glow glow-2"></div>
+  <div class="whatsapp-float">
+    <a href="https://wa.me/13473914312?text=Hello%20Spintex%20Suites%2C%20I%20want%20to%20book%20a%20suite." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <span>WhatsApp</span>
+    </a>
+  </div>
+
+  <div class="signup-popup" id="signupPopup" aria-hidden="true">
+    <div class="popup-backdrop" data-popup-close="true"></div>
+    <div class="popup-card glass">
+      <button class="popup-close" type="button" data-popup-close="true" aria-label="Close popup">×</button>
+      <p class="eyebrow">Stay in the loop</p>
+      <h2>Get first access to special offers and suite updates</h2>
+      <p>Join the Spintex Suites list for soft-launch rates, premium stay offers, and first notice when Airbnb, Booking.com, and Agoda links go live.</p>
+      <form id="signupForm" class="popup-form">
+        <input type="hidden" name="formType" value="newsletter" />
+        <label>
+          Your Email
+          <input type="email" name="email" required placeholder="Enter your email" />
+        </label>
+        <label>
+          Name <span class="optional">optional</span>
+          <input type="text" name="name" placeholder="Your name" />
+        </label>
+        <button class="btn btn-gold" type="submit">Get Updates</button>
+        <p class="form-status" id="signupStatus">This will send signups to spintexsuites@gmail.com once the email API key is connected.</p>
+      </form>
+    </div>
+  </div>
 
   <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="#top" class="brand">
-        <span class="brand-mark">S</span>
-        <span>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark">SS</div>
+        <div>
           <strong>Spintex Suites</strong>
-          <small>Luxury smart stays in Accra</small>
-        </span>
-      </a>
-
-      <nav class="desktop-nav">
+          <small>Accra · Boutique Luxury Living</small>
+        </div>
+      </div>
+      <nav>
         <a href="#suites">Suites</a>
-        <a href="#experience">Experience</a>
-        <a href="#gallery">Layouts</a>
+        <a href="#booking">Booking</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#special-request">Special Requests</a>
         <a href="#contact">Contact</a>
-        <a href="https://instagram.com/spintexsuites" target="_blank" rel="noopener" class="pill-link">Instagram</a>
       </nav>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero section">
+  <main>
+    <section class="hero">
+      <div class="hero-overlay"></div>
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Boutique · Premium · Smart Living</p>
-          <h1>Stay where luxury stops pretending and starts performing.</h1>
-          <p class="hero-text">
-            Spintex Suites is a boutique collection of elevated studio apartments in Spintex, Accra — designed for travelers, executives, and creators who want hotel polish with apartment privacy.
-          </p>
-          <div class="cta-row">
-            <a class="btn btn-gold" href="#suites">Explore 8 Demo Suites</a>
-            <a class="btn btn-dark" href="https://wa.me/13473914312?text=Hello%20Spintex%20Suites%2C%20I%20want%20to%20book%20a%20suite." target="_blank" rel="noopener">Book on WhatsApp</a>
+          <p class="eyebrow">Luxury smart apartments in Spintex, Accra</p>
+          <h1>Stay where clean design, soft luxury, and smart hospitality meet.</h1>
+          <p class="lead">Spintex Suites is designed as a polished boutique stay brand with elegant studios, upscale finishes, direct support, and premium positioning for short stays, business travel, and longer bookings.</p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="#suites">View 8 Suite Concepts</a>
+            <a class="btn btn-dark" href="https://wa.me/13473914312?text=Hello%20Spintex%20Suites%2C%20I%20would%20like%20availability%20and%20rates." target="_blank" rel="noopener">Book by WhatsApp</a>
           </div>
-
-          <div class="hero-points">
-            <div><strong>8</strong><span>Demo room styles</span></div>
-            <div><strong>24/7</strong><span>Direct contact</span></div>
-            <div><strong>Smart</strong><span>Luxury features</span></div>
+          <div class="quick-facts">
+            <div><span>8</span><small>Luxury room demos</small></div>
+            <div><span>24/7</span><small>Direct contact support</small></div>
+            <div><span>Multi-platform</span><small>Phone · Airbnb · Booking · Agoda</small></div>
           </div>
         </div>
-
-        <div class="hero-visual card-luxury">
-          <img src="assets/hero-suite.svg" alt="Spintex Suites luxury exterior and pool lounge concept" />
-          <div class="hero-overlay">
-            <span>Spintex · Accra · Ghana</span>
-            <strong>Private studio elegance with hotel-grade finish</strong>
+        <div class="hero-card glass">
+          <div class="status-badges">
+            <span class="status-pill">High-demand positioning</span>
+            <span class="status-pill status-warm">Launch-ready concept</span>
+          </div>
+          <h2>How guests can book</h2>
+          <ul>
+            <li>Direct by phone or WhatsApp for personalized rates, availability, and fast closes</li>
+            <li>Via Airbnb, Booking.com, Agoda, or any platform once your links are added</li>
+            <li>By custom request for long stays, airport pickup, group stays, and special arrangements</li>
+          </ul>
+          <div class="availability-card">
+            <small>Availability pulse</small>
+            <strong id="occupancyLabel">Demand preview active</strong>
+            <p id="occupancyText">Connect this area to your real booking system later for true live availability.</p>
+          </div>
+          <div class="contact-mini">
+            <a href="tel:+233545050957">Call Ghana: +233 54 505 0957</a>
+            <a href="https://wa.me/13473914312" target="_blank" rel="noopener">WhatsApp: +1 347 391 4312</a>
+            <a href="https://instagram.com/spintexsuites" target="_blank" rel="noopener">Instagram: @spintexsuites</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section stats-strip">
-      <div class="container stats-grid">
-        <article class="stat-card">
-          <h3>Prime Spintex positioning</h3>
-          <p>Built for short stays, long stays, relocation, and premium Airbnb-style hospitality.</p>
-        </article>
-        <article class="stat-card">
-          <h3>Luxury micro-studio concept</h3>
-          <p>Self-contained suites, rich textures, warm lighting, sleek kitchens, and private comfort.</p>
-        </article>
-        <article class="stat-card">
-          <h3>Direct booking advantage</h3>
-          <p>Guests can contact you instantly by call, WhatsApp, or Instagram without platform friction.</p>
-        </article>
+    <section class="section intro-band">
+      <div class="container intro-grid">
+        <div>
+          <p class="eyebrow">Positioning</p>
+          <h2>A boutique stay brand built to photograph beautifully and convert fast</h2>
+        </div>
+        <p>These suite visuals were created as concept images based on the premium direction of the property: smart studios, rich neutrals, layered lighting, boutique-hotel styling, and a look that works across Airbnb, Booking.com, Agoda, Instagram, and direct bookings. They are design-forward showcase images for demo use on the site.</p>
       </div>
     </section>
 
     <section id="suites" class="section">
       <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Signature Collection</p>
-          <h2>8 standout room concepts</h2>
-          <p>Each suite is presented with a concept image, key features, and a clickable layout preview.</p>
+        <div class="section-heading">
+          <p class="eyebrow">8 suite concepts</p>
+          <h2>Click any suite to explore the room and view its layout concept</h2>
         </div>
-
-        <div id="suite-grid" class="suite-grid"></div>
+        <div class="suite-grid" id="suiteGrid"></div>
       </div>
     </section>
 
-    <section id="experience" class="section dark-band">
-      <div class="container experience-grid">
-        <div>
-          <p class="eyebrow">Why it stands out</p>
-          <h2>Made for guests who notice the details.</h2>
-          <p>
-            The Spintex Suites concept blends boutique-hotel aesthetics with the efficiency of modern studio living: layered lighting, polished finishes, private kitchenettes, premium beds, work-friendly zones, seamless check-in flow, and social-ready design that actually photographs like money.
-          </p>
-        </div>
-
-        <div class="feature-list">
-          <article>
-            <span>01</span>
-            <div>
-              <h3>Luxury studio layouts</h3>
-              <p>Compact, efficient, and elevated — no wasted space, no boring corners.</p>
-            </div>
-          </article>
-          <article>
-            <span>02</span>
-            <div>
-              <h3>Smart-stay functionality</h3>
-              <p>Built for digital nomads, business travelers, and premium short-term stays.</p>
-            </div>
-          </article>
-          <article>
-            <span>03</span>
-            <div>
-              <h3>Direct brand identity</h3>
-              <p>Strong visual story, fast inquiry flow, and social channels ready for conversion.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="gallery" class="section">
+    <section id="booking" class="section dark-section">
       <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Layout Options</p>
-          <h2>Preview apartment layouts</h2>
-          <p>Tap any suite card to open a larger concept image and a floorplan-style layout view.</p>
+        <div class="section-heading">
+          <p class="eyebrow">Booking options</p>
+          <h2>Direct booking first. Platform links ready when you are.</h2>
         </div>
-
-        <div class="layout-gallery">
-          <img src="assets/layout-overview.svg" alt="Spintex Suites layout overview" />
+        <div class="platform-grid">
+          <article class="platform-card">
+            <h3>Direct Phone Booking</h3>
+            <p>Best for custom pricing, premium guest handling, long stays, and highest-margin bookings.</p>
+            <a class="inline-link" href="tel:+233545050957">Call Ghana line</a>
+          </article>
+          <article class="platform-card">
+            <h3>WhatsApp Booking</h3>
+            <p>Fastest route for availability, extra photos, voice notes, payment instructions, and quick closes.</p>
+            <a class="inline-link" href="https://wa.me/13473914312?text=Hello%20Spintex%20Suites%2C%20I%20want%20to%20book." target="_blank" rel="noopener">Open WhatsApp chat</a>
+          </article>
+          <article class="platform-card placeholder-link">
+            <h3>Airbnb</h3>
+            <p>Add your Airbnb listing URL here once the property is live on Airbnb.</p>
+            <a class="inline-link disabled" href="#">Placeholder for Airbnb link</a>
+          </article>
+          <article class="platform-card placeholder-link">
+            <h3>Booking.com</h3>
+            <p>Add your Booking.com property URL here once the property is live on Booking.com.</p>
+            <a class="inline-link disabled" href="#">Placeholder for Booking.com link</a>
+          </article>
+          <article class="platform-card placeholder-link">
+            <h3>Agoda</h3>
+            <p>Add your Agoda listing URL here once the property is live on Agoda.</p>
+            <a class="inline-link disabled" href="#">Placeholder for Agoda link</a>
+          </article>
+          <article class="platform-card">
+            <h3>Instagram Inquiry</h3>
+            <p>Perfect for social proof, reels, guest updates, and content-driven demand.</p>
+            <a class="inline-link" href="https://instagram.com/spintexsuites" target="_blank" rel="noopener">Visit @spintexsuites</a>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section social-section">
-      <div class="container social-grid">
-        <div class="social-card">
-          <p class="eyebrow">Instagram</p>
-          <h3>@spintexsuites</h3>
-          <p>Use the Instagram button below to showcase reels, room drops, and behind-the-scenes build energy.</p>
-          <a class="btn btn-outline" href="https://instagram.com/spintexsuites" target="_blank" rel="noopener">Open Instagram</a>
+    <section id="reviews" class="section reviews-section">
+      <div class="container reviews-grid">
+        <div>
+          <p class="eyebrow">Guest love</p>
+          <h2>Review-ready section with room for real platform feeds</h2>
+          <p>The rotating cards below are demo testimonials for presentation and layout. You can replace them with real Airbnb, Booking.com, Google, or direct guest reviews once the property is live.</p>
+          <div class="review-widget-placeholder">
+            <strong>Live review widget slots</strong>
+            <p>Add your Airbnb Superhost widget, Booking.com review block, Google review embed, or review API feed here later.</p>
+          </div>
         </div>
-
-        <div class="social-card insta-embed-card">
-          <div class="embed-placeholder">
-            <span>Instagram plug-in ready</span>
-            <p>For live feed embedding, replace this placeholder with an approved Instagram embed widget or social feed script when deploying.</p>
+        <div class="glass live-review-card" id="liveReviewCard">
+          <small class="review-tag">Rotating guest spotlight</small>
+          <h3 id="reviewTitle">Elegant, calm, and beautifully put together</h3>
+          <p id="reviewText">The lighting, finishes, and setup made it feel far more premium than a standard short-stay apartment.</p>
+          <div class="review-meta">
+            <strong id="reviewAuthor">Ama · Business Traveler</strong>
+            <span id="reviewScore">5.0 rating concept</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section contact-section">
+    <section id="special-request" class="section">
+      <div class="container form-wrap">
+        <div class="form-intro">
+          <p class="eyebrow">Special requests</p>
+          <h2>Need something custom?</h2>
+          <p>Guests can send arrival details, long-stay requests, event stays, extra guest questions, airport pickup needs, or room preferences here. The form is wired for email delivery through a Cloudflare Pages Function. Add one email API key and it starts sending to your inbox.</p>
+          <div class="note-box">
+            <strong>Email destination:</strong>
+            <span>spintexsuites@gmail.com</span>
+          </div>
+          <div class="note-box soft-note">
+            <strong>Special offer list:</strong>
+            <span>Popup signups also route to the same inbox so you can build a guest list before launch.</span>
+          </div>
+        </div>
+        <form id="inquiryForm" class="glass form-card">
+          <input type="hidden" name="formType" value="inquiry" />
+          <div class="field-row">
+            <label>
+              Full Name
+              <input type="text" name="name" required placeholder="Guest full name" />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" required placeholder="Guest email" />
+            </label>
+          </div>
+          <div class="field-row">
+            <label>
+              Phone / WhatsApp
+              <input type="text" name="phone" placeholder="Phone or WhatsApp number" />
+            </label>
+            <label>
+              Preferred Platform
+              <select name="platform">
+                <option value="Direct">Direct</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Airbnb">Airbnb</option>
+                <option value="Booking.com">Booking.com</option>
+                <option value="Agoda">Agoda</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+          </div>
+          <div class="field-row">
+            <label>
+              Arrival Date
+              <input type="date" name="arrivalDate" />
+            </label>
+            <label>
+              Nights / Length of Stay
+              <input type="text" name="stayLength" placeholder="e.g. 3 nights, 1 month" />
+            </label>
+          </div>
+          <label>
+            Special Request / Message
+            <textarea name="message" rows="6" required placeholder="Tell Spintex Suites what you need."></textarea>
+          </label>
+          <div class="form-actions">
+            <button class="btn btn-gold" type="submit">Send Special Request</button>
+            <a class="btn btn-outline" href="mailto:spintexsuites@gmail.com?subject=Spintex%20Suites%20Special%20Request">Email Directly</a>
+          </div>
+          <p class="form-status" id="formStatus">Form ready. Once the email key is added in Cloudflare, submissions will land in spintexsuites@gmail.com.</p>
+        </form>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section dark-section">
       <div class="container contact-grid">
         <div>
-          <p class="eyebrow">Direct Booking</p>
-          <h2>Contact Spintex Suites</h2>
-          <p>Guests can reach you directly for viewings, rates, long stays, group bookings, and partnership inquiries.</p>
+          <p class="eyebrow">Contact</p>
+          <h2>Let guests reach you the easy way</h2>
+          <p>Use direct contact for faster conversion and stronger margins. Let the platforms build trust, then let your direct line close the deal. Fancy phrase for that: distribution strategy. Street phrase for that: keep the middleman on a diet.</p>
         </div>
-
         <div class="contact-cards">
           <a class="contact-card" href="tel:+233545050957">
-            <span>Call Ghana</span>
+            <small>Ghana phone</small>
             <strong>+233 54 505 0957</strong>
           </a>
-          <a class="contact-card" href="https://wa.me/13473914312?text=Hello%20Spintex%20Suites%2C%20I%20want%20more%20information%20about%20the%20apartments." target="_blank" rel="noopener">
-            <span>WhatsApp</span>
+          <a class="contact-card" href="https://wa.me/13473914312" target="_blank" rel="noopener">
+            <small>WhatsApp</small>
             <strong>+1 347 391 4312</strong>
           </a>
+          <a class="contact-card" href="mailto:spintexsuites@gmail.com?subject=Spintex%20Suites%20Inquiry">
+            <small>Email</small>
+            <strong>spintexsuites@gmail.com</strong>
+          </a>
           <a class="contact-card" href="https://instagram.com/spintexsuites" target="_blank" rel="noopener">
-            <span>Instagram</span>
+            <small>Instagram</small>
             <strong>@spintexsuites</strong>
           </a>
         </div>
@@ -189,49 +283,33 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-wrap">
+    <div class="container footer-grid">
       <div>
         <strong>Spintex Suites</strong>
-        <p>Luxury smart apartments in Spintex, Accra.</p>
+        <p>Luxury smart stay concept in Spintex, Accra.</p>
       </div>
-      <div class="footer-links">
-        <a href="tel:+233545050957">Call</a>
-        <a href="https://wa.me/13473914312" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="https://instagram.com/spintexsuites" target="_blank" rel="noopener">Instagram</a>
+      <div>
+        <p>This version includes concept room images, layout previews, booking placeholders, a special-offer popup signup, rotating review demo cards, and Cloudflare email form setup.</p>
       </div>
     </div>
   </footer>
 
-  <a class="whatsapp-float" href="https://wa.me/13473914312?text=Hello%20Spintex%20Suites%2C%20I%20want%20to%20book%20or%20schedule%20a%20viewing." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    <span>WhatsApp</span>
-  </a>
-
-  <div id="suite-modal" class="modal" aria-hidden="true">
+  <div class="modal" id="suiteModal" aria-hidden="true">
     <div class="modal-backdrop" data-close="true"></div>
     <div class="modal-panel">
-      <button class="modal-close" data-close="true" aria-label="Close modal">×</button>
-      <div class="modal-body">
-        <div class="modal-image-wrap">
-          <img id="modal-image" src="" alt="" />
-        </div>
-        <div class="modal-copy">
-          <p id="modal-label" class="eyebrow"></p>
-          <h3 id="modal-title"></h3>
-          <p id="modal-desc"></p>
-          <ul id="modal-features"></ul>
-          <div class="layout-preview">
-            <h4>Layout view</h4>
-            <img id="modal-layout" src="" alt="Suite layout" />
-          </div>
-          <div class="cta-row modal-actions">
-            <a class="btn btn-gold" href="tel:+233545050957">Call Now</a>
-            <a class="btn btn-dark" href="https://wa.me/13473914312?text=Hello%20Spintex%20Suites%2C%20I%20am%20interested%20in%20a%20suite." target="_blank" rel="noopener">WhatsApp Inquiry</a>
-          </div>
+      <button class="modal-close" type="button" data-close="true">×</button>
+      <div class="modal-grid">
+        <img id="modalRoomImage" src="" alt="Suite concept image" />
+        <div class="modal-info">
+          <p class="eyebrow">Suite concept</p>
+          <h3 id="modalTitle"></h3>
+          <p id="modalDesc"></p>
+          <img id="modalLayoutImage" class="layout-image" src="" alt="Suite layout concept" />
         </div>
       </div>
     </div>
   </div>
 
-  <script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
