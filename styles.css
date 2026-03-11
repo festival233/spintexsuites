@@ -52,7 +52,7 @@ textarea{min-height:130px;resize:vertical}
 .footer{padding:40px 0 56px;border-top:1px solid var(--line);margin-top:44px}.footer-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;gap:20px}
 .float-wa{position:fixed;right:18px;bottom:18px;z-index:45;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#9bf1c2,#25d366);color:#09140d;font-weight:900;box-shadow:0 16px 38px rgba(37,211,102,.24)}
 .popup{position:fixed;right:22px;bottom:92px;width:min(420px, calc(100vw - 32px));z-index:46;transform:translateY(16px);opacity:0;visibility:hidden;transition:.34s ease}.popup.show{transform:translateY(0);opacity:1;visibility:visible}
-.popup .panel{padding:22px;position:relative}
+.popup .panel{padding:22px;position:relative;background:linear-gradient(155deg, rgba(10,12,14,.96), rgba(26,22,14,.92));border:1px solid rgba(212,177,106,.45);box-shadow:0 18px 40px rgba(0,0,0,.45), 0 0 0 1px rgba(212,177,106,.18) inset}
 .close{position:absolute;right:12px;top:10px;width:34px;height:34px;border:none;border-radius:50%;background:rgba(255,255,255,.06);color:var(--text);cursor:pointer}
 .status{display:inline-flex;align-items:center;gap:8px;color:var(--success);font-size:.94rem}.status::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 0 6px rgba(141,224,176,.12)}
 .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}.tab{padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--text);cursor:pointer}.tab.active{background:rgba(212,177,106,.14);border-color:rgba(212,177,106,.30)}
