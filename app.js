@@ -1,4 +1,3 @@
-
 const demandStates=[{pct:31,text:"31% booked this week · early rates are still available"},{pct:47,text:"47% booked this week · premium suites are getting attention"},{pct:58,text:"58% booked this week · weekend demand is rising"},{pct:42,text:"42% booked this week · executive rooms are trending"},{pct:65,text:"65% booked this week · limited premium nights left"}];
 const activityStates=["Guest from London just checked dates for the Signature Balcony Suite.","A returning guest joined the VIP offer list.","Airport pickup was requested for an upcoming stay.","Two guests are comparing room options right now.","Executive Studio just received another inquiry."];
 function q(s){return document.querySelector(s)} function qa(s){return Array.from(document.querySelectorAll(s))}
@@ -33,5 +32,63 @@ function bindContactForm(){
   });
 }
 function bindFilter(){const tabs=qa("[data-filter]"),cards=qa("[data-room]"); tabs.forEach(tab=>{tab.addEventListener("click",()=>{tabs.forEach(t=>t.classList.remove("active")); tab.classList.add("active"); const key=tab.dataset.filter; cards.forEach(card=>{const tags=(card.dataset.tags||"").split(","); card.style.display=(key==="all"||tags.includes(key))?"":"none";});});});}
+function bindAiConcierge(){
+  const host=document.createElement("div");
+  host.className="ai-concierge";
+  host.innerHTML=`
+    <button class="ai-concierge-toggle" type="button" data-ai-toggle aria-label="Open AI concierge chat">
+      <span>AI Concierge</span>
+    </button>
+    <section class="ai-concierge-panel" data-ai-panel aria-live="polite">
+      <div class="ai-concierge-head">
+        <strong>Spintex AI Concierge</strong>
+        <button type="button" class="ai-concierge-min" data-ai-close aria-label="Close AI concierge">×</button>
+      </div>
+      <div class="ai-concierge-messages" data-ai-messages></div>
+      <form class="ai-concierge-form" data-ai-form>
+        <input name="message" placeholder="Ask about rooms, prices, or services" maxlength="220" required>
+        <button type="submit">Send</button>
+      </form>
+    </section>`;
+  document.body.appendChild(host);
+
+  const messages=host.querySelector("[data-ai-messages]");
+  const form=host.querySelector("[data-ai-form]");
+  const input=form.querySelector("input[name='message']");
+  const toggle=host.querySelector("[data-ai-toggle]");
+  const close=host.querySelector("[data-ai-close]");
+
+  const addMessage=(text,role)=>{
+    const item=document.createElement("p");
+    item.className=`ai-msg ${role}`;
+    item.textContent=text;
+    messages.appendChild(item);
+    messages.scrollTop=messages.scrollHeight;
+  };
+
+  const respond=(message)=>{
+    const text=message.toLowerCase();
+    if(text.includes("price")||text.includes("cost")||text.includes("rate")) return "Rates usually range from $45 to $74 per night depending on room type and dates. I can guide you to the best option if you share your dates.";
+    if(text.includes("airport")||text.includes("pickup")||text.includes("transfer")) return "Yes — airport pickup can be arranged by concierge. Share your arrival time and flight details in the contact page or WhatsApp.";
+    if(text.includes("room")||text.includes("suite")) return "Our most requested options are Executive Studio, Signature Balcony Suite, Skyline Studio, and Platinum Suite. Would you like a quiet room or a premium-style suite?";
+    if(text.includes("book")||text.includes("reserve")||text.includes("availability")) return "For the fastest confirmation, tap Book on WhatsApp. You can also send dates on the Contact page and our team will follow up quickly.";
+    if(text.includes("hello")||text.includes("hi")) return "Hello! I can help with room suggestions, pricing, concierge services, and booking steps.";
+    return "I can help with pricing, room selection, airport pickup, and booking guidance. Ask me anything about your stay.";
+  };
+
+  addMessage("Welcome to Spintex Suites. I’m your AI concierge — ask about rooms, rates, or services.","bot");
+
+  toggle.addEventListener("click",()=>host.classList.toggle("open"));
+  close.addEventListener("click",()=>host.classList.remove("open"));
+
+  form.addEventListener("submit",e=>{
+    e.preventDefault();
+    const message=input.value.trim();
+    if(!message)return;
+    addMessage(message,"user");
+    input.value="";
+    setTimeout(()=>addMessage(respond(message),"bot"),350);
+  });
+}
 function year(){qa("[data-year]").forEach(el=>el.textContent=new Date().getFullYear())}
-document.addEventListener("DOMContentLoaded",()=>{bindPopup(); bindSubscribe(); bindContactForm(); bindFilter(); year(); updateDemand(); updateActivity(); setInterval(updateDemand,5200); setInterval(updateActivity,4200);});
+document.addEventListener("DOMContentLoaded",()=>{bindPopup(); bindSubscribe(); bindContactForm(); bindFilter(); bindAiConcierge(); year(); updateDemand(); updateActivity(); setInterval(updateDemand,5200); setInterval(updateActivity,4200);});
