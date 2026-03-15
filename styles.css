@@ -58,3 +58,18 @@ textarea{min-height:130px;resize:vertical}
 .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}.tab{padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--text);cursor:pointer}.tab.active{background:rgba(212,177,106,.14);border-color:rgba(212,177,106,.30)}
 @media (max-width:1024px){.hero-grid,.grid-4,.grid-3,.grid-2,.offer,.footer-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){.nav{align-items:flex-start;flex-direction:column;min-height:auto;padding:12px 0}.nav-links,.nav-cta{width:100%}.hero-grid,.grid-4,.grid-3,.grid-2,.offer,.footer-grid,.hero-facts,.forms{grid-template-columns:1fr}.hero-copy,.offer{padding:24px}.hero-media{min-height:360px}}
+
+.ai-concierge{position:fixed;right:18px;bottom:92px;z-index:47;display:grid;justify-items:end;gap:10px}
+.ai-concierge-toggle{border:none;border-radius:999px;padding:12px 18px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;font-weight:800;cursor:pointer;box-shadow:0 14px 32px rgba(212,177,106,.30)}
+.ai-concierge-panel{width:min(360px,calc(100vw - 26px));border:1px solid rgba(212,177,106,.35);border-radius:20px;background:rgba(12,16,20,.97);box-shadow:var(--shadow);display:none;overflow:hidden}
+.ai-concierge.open .ai-concierge-panel{display:block}
+.ai-concierge-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+.ai-concierge-min{border:none;background:rgba(255,255,255,.08);color:var(--text);width:30px;height:30px;border-radius:50%;cursor:pointer}
+.ai-concierge-messages{max-height:280px;overflow:auto;display:grid;gap:10px;padding:14px}
+.ai-msg{margin:0;padding:10px 12px;border-radius:14px;font-size:.93rem;line-height:1.4}
+.ai-msg.bot{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.ai-msg.user{background:rgba(212,177,106,.20);border:1px solid rgba(212,177,106,.28);justify-self:end}
+.ai-concierge-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.ai-concierge-form input{border-radius:12px;padding:11px 12px}
+.ai-concierge-form button{border:none;border-radius:12px;padding:0 14px;background:linear-gradient(135deg,var(--gold2),var(--gold));font-weight:700;cursor:pointer}
+@media (max-width:760px){.ai-concierge{left:12px;right:12px;bottom:86px;justify-items:stretch}.ai-concierge-toggle{width:100%}.ai-concierge-panel{width:100%}}
