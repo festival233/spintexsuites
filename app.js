@@ -32,6 +32,34 @@ function bindContactForm(){
   });
 }
 function bindFilter(){const tabs=qa("[data-filter]"),cards=qa("[data-room]"); tabs.forEach(tab=>{tab.addEventListener("click",()=>{tabs.forEach(t=>t.classList.remove("active")); tab.classList.add("active"); const key=tab.dataset.filter; cards.forEach(card=>{const tags=(card.dataset.tags||"").split(","); card.style.display=(key==="all"||tags.includes(key))?"":"none";});});});}
+function bindMessageTracking(){
+  if(typeof window.gtag!=="function") return;
+
+  qa("a[href]").forEach(link=>{
+    const href=link.getAttribute("href")||"";
+    const normalizedHref=href.toLowerCase();
+
+    if(normalizedHref.includes("wa.me")||normalizedHref.includes("whatsapp.com")){
+      link.addEventListener("click",()=>{
+        gtag("event","whatsapp_click",{
+          event_category:"contact",
+          event_label:"whatsapp_link",
+          link_url:href
+        });
+      });
+    }
+
+    if(normalizedHref.startsWith("mailto:")){
+      link.addEventListener("click",()=>{
+        gtag("event","email_click",{
+          event_category:"contact",
+          event_label:"email_link",
+          link_url:href
+        });
+      });
+    }
+  });
+}
 function bindAiConcierge(){
   const host=document.createElement("div");
   host.className="ai-concierge";
@@ -91,4 +119,4 @@ function bindAiConcierge(){
   });
 }
 function year(){qa("[data-year]").forEach(el=>el.textContent=new Date().getFullYear())}
-document.addEventListener("DOMContentLoaded",()=>{bindPopup(); bindSubscribe(); bindContactForm(); bindFilter(); bindAiConcierge(); year(); updateDemand(); updateActivity(); setInterval(updateDemand,5200); setInterval(updateActivity,4200);});
+document.addEventListener("DOMContentLoaded",()=>{bindPopup(); bindSubscribe(); bindContactForm(); bindFilter(); bindMessageTracking(); bindAiConcierge(); year(); updateDemand(); updateActivity(); setInterval(updateDemand,5200); setInterval(updateActivity,4200);});
