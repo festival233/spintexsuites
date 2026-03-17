@@ -35,9 +35,30 @@ function bindFilter(){const tabs=qa("[data-filter]"),cards=qa("[data-room]"); ta
 function bindMessageTracking(){
   if(typeof window.gtag!=="function") return;
 
+  const roomPagePattern=/(^|\/)room-[a-z0-9-]+\.html(?:[?#].*)?$/;
+
   qa("a[href]").forEach(link=>{
     const href=link.getAttribute("href")||"";
     const normalizedHref=href.toLowerCase();
+
+    if(roomPagePattern.test(normalizedHref)){
+      link.addEventListener("click",()=>{
+        const roomSlug=href
+          .split(/[?#]/)[0]
+          .split("/")
+          .pop()
+          .replace("room-","")
+          .replace(".html","");
+
+        gtag("event","room_page_click",{
+          event_category:"room_interest",
+          event_label:roomSlug,
+          room_name:roomSlug,
+          link_url:href,
+          source_page:window.location.pathname
+        });
+      });
+    }
 
     if(normalizedHref.includes("wa.me")||normalizedHref.includes("whatsapp.com")){
       link.addEventListener("click",()=>{
@@ -51,10 +72,14 @@ function bindMessageTracking(){
 
     if(normalizedHref.startsWith("mailto:")){
       link.addEventListener("click",()=>{
+        const emailAddress=href.replace(/^mailto:/i,"").split("?")[0]||"unknown_email";
         gtag("event","email_click",{
-          event_category:"contact",
-          event_label:"email_link",
-          link_url:href
+          event_category:"lead_contact",
+          event_label:emailAddress,
+          contact_method:"email",
+          email_address:emailAddress,
+          link_url:href,
+          source_page:window.location.pathname
         });
       });
     }
