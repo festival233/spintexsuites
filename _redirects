@@ -1,0 +1,7 @@
+# Canonical host + protocol (single canonical destination: https://spintexsuites.com)
+http://spintexsuites.com/* https://spintexsuites.com/:splat 301
+http://www.spintexsuites.com/* https://spintexsuites.com/:splat 301
+https://www.spintexsuites.com/* https://spintexsuites.com/:splat 301
+
+# Remove redirect-indexed URL variant
+/index.html / 301
