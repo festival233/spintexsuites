@@ -73,3 +73,11 @@ textarea{min-height:130px;resize:vertical}
 .ai-concierge-form input{border-radius:12px;padding:11px 12px}
 .ai-concierge-form button{border:none;border-radius:12px;padding:0 14px;background:linear-gradient(135deg,var(--gold2),var(--gold));font-weight:700;cursor:pointer}
 @media (max-width:760px){.ai-concierge{left:12px;right:12px;bottom:86px;justify-items:stretch}.ai-concierge-toggle{width:100%}.ai-concierge-panel{width:100%}}
+
+.breadcrumbs{margin-bottom:18px;color:var(--muted);font-size:.92rem}
+.breadcrumbs a{color:var(--gold2)}
+.cta-strip{padding:28px;display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+.testimonials{align-items:stretch}
+.faq-list{display:grid;gap:16px}
+.article-content h2{margin-top:28px}
+.article-content p,.article-content li{max-width:82ch}
