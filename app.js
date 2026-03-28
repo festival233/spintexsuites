@@ -287,6 +287,8 @@ function syncLanguageSwitcherUi(selectedCode){
   qa(".language-switcher-select").forEach(other=>{other.value=selectedCode;});
 }
 function bindLanguageSwitcher(){
+  if(window.matchMedia("(max-width:760px)").matches) return;
+
   const nav=q(".topbar .nav");
   if(!nav) return;
 
