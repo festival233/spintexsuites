@@ -23,7 +23,7 @@ a{text-decoration:none;color:inherit} img{max-width:100%;display:block}
 .language-switcher-option{min-height:42px;border-radius:12px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.05);color:var(--text);font:inherit;font-weight:600;cursor:pointer}
 .language-switcher-option.active{background:rgba(212,177,106,.22);border-color:rgba(212,177,106,.55);color:var(--gold2)}
 .language-switcher-status{font-size:.78rem;color:#ffcca8;min-height:1em}
-.language-switcher-mobile{display:none}
+.language-switcher-mobile{display:none;width:100%}
 .language-switcher-desktop{display:flex}
 .visually-hidden-translate{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 .goog-te-banner-frame.skiptranslate{display:none!important}
@@ -71,7 +71,7 @@ textarea{min-height:130px;resize:vertical}
 .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}.tab{padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--text);cursor:pointer}.tab.active{background:rgba(212,177,106,.14);border-color:rgba(212,177,106,.30)}
 @media (max-width:1024px){.hero-grid,.grid-4,.grid-3,.grid-2,.offer,.footer-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){.nav{align-items:flex-start;flex-direction:column;min-height:auto;padding:12px 0}.nav-links,.nav-cta{width:100%}.hero-grid,.grid-4,.grid-3,.grid-2,.offer,.footer-grid,.hero-facts,.forms{grid-template-columns:1fr}.hero-copy,.offer{padding:24px}.hero-media{min-height:360px}}
-@media (max-width:760px){.language-switcher-desktop{display:none}.language-switcher-mobile{display:flex;margin-top:8px;width:100%}.language-switcher-mobile .language-switcher{width:100%}.language-switcher-mobile .language-switcher-select{display:none}.language-switcher-mobile .language-switcher-options{display:grid}}
+@media (max-width:760px){.language-switcher-desktop{display:none}.language-switcher-mobile{display:flex;order:3;margin-top:8px}.language-switcher-mobile .language-switcher{width:100%}.language-switcher-mobile .language-switcher-select{display:none}.language-switcher-mobile .language-switcher-options{display:grid;grid-template-columns:1fr}}
 
 .ai-concierge{position:fixed;right:18px;bottom:92px;z-index:47;display:grid;justify-items:end;gap:10px}
 .ai-concierge-toggle{border:none;border-radius:999px;padding:12px 18px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;font-weight:800;cursor:pointer;box-shadow:0 14px 32px rgba(212,177,106,.30)}

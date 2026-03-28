@@ -312,13 +312,14 @@ function bindLanguageSwitcher(){
     nav.appendChild(desktopHost);
   }
 
-  const navLinks=q(".topbar .nav-links");
-  if(navLinks){
-    const mobileHost=document.createElement("div");
-    mobileHost.className="language-switcher-host language-switcher-mobile";
-    const mobileControl=buildLanguageSwitcherControl("mobile");
-    mobileHost.appendChild(mobileControl);
-    navLinks.appendChild(mobileHost);
+  const mobileHost=document.createElement("div");
+  mobileHost.className="language-switcher-host language-switcher-mobile";
+  const mobileControl=buildLanguageSwitcherControl("mobile");
+  mobileHost.appendChild(mobileControl);
+  if(navCta){
+    nav.insertBefore(mobileHost,navCta);
+  }else{
+    nav.appendChild(mobileHost);
   }
 
   const savedLanguage=getSavedLanguage();
