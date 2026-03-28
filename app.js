@@ -1,5 +1,16 @@
 const demandStates=[{pct:31,text:"31% booked this week · early rates are still available"},{pct:47,text:"47% booked this week · premium suites are getting attention"},{pct:58,text:"58% booked this week · weekend demand is rising"},{pct:42,text:"42% booked this week · executive rooms are trending"},{pct:65,text:"65% booked this week · limited premium nights left"}];
 const activityStates=["Guest from London just checked dates for the Signature Balcony Suite.","A returning guest joined the VIP offer list.","Airport pickup was requested for an upcoming stay.","Two guests are comparing room options right now.","Executive Studio just received another inquiry."];
+const languageOptions=[
+  {code:"en",label:"English"},
+  {code:"fr",label:"French"},
+  {code:"zh-CN",label:"Chinese"},
+  {code:"de",label:"German"},
+  {code:"ar",label:"Arabic"}
+];
+const defaultLanguage="en";
+const languageStorageKey="spintex_selected_language";
+let translateInitStarted=false;
+let translateReadyPromise=null;
 function q(s){return document.querySelector(s)} function qa(s){return Array.from(document.querySelectorAll(s))}
 function updateDemand(){const bar=q("[data-demand-bar]"),label=q("[data-demand-label]"); if(!bar||!label)return; const item=demandStates[Math.floor(Math.random()*demandStates.length)]; bar.style.width=item.pct+"%"; label.textContent=item.text;}
 function updateActivity(){const el=q("[data-activity]"); if(el) el.textContent=activityStates[Math.floor(Math.random()*activityStates.length)];}
@@ -143,5 +154,168 @@ function bindAiConcierge(){
     setTimeout(()=>addMessage(respond(message),"bot"),350);
   });
 }
+function normalizeLanguageCode(code){
+  return languageOptions.some(option=>option.code===code)?code:defaultLanguage;
+}
+function getSavedLanguage(){
+  return normalizeLanguageCode(localStorage.getItem(languageStorageKey)||defaultLanguage);
+}
+function setSavedLanguage(code){
+  localStorage.setItem(languageStorageKey,normalizeLanguageCode(code));
+}
+function applyDirectionForLanguage(code){
+  const isRtl=code==="ar";
+  document.documentElement.setAttribute("dir",isRtl?"rtl":"ltr");
+  document.documentElement.setAttribute("lang",isRtl?"ar":"en");
+  document.body.classList.toggle("is-rtl-language",isRtl);
+}
+function ensureTranslateContainer(){
+  let container=q("#google_translate_element");
+  if(container) return container;
+  container=document.createElement("div");
+  container.id="google_translate_element";
+  container.className="visually-hidden-translate";
+  container.setAttribute("aria-hidden","true");
+  document.body.appendChild(container);
+  return container;
+}
+function waitForTranslateCombo(retries=24){
+  return new Promise((resolve,reject)=>{
+    const findCombo=()=>{
+      const combo=q(".goog-te-combo");
+      if(combo){
+        resolve(combo);
+        return;
+      }
+      if(retries<=0){
+        reject(new Error("Google Translate language selector did not initialize"));
+        return;
+      }
+      retries-=1;
+      setTimeout(findCombo,250);
+    };
+    findCombo();
+  });
+}
+function loadTranslateScript(){
+  if(translateReadyPromise) return translateReadyPromise;
+  translateReadyPromise=new Promise((resolve,reject)=>{
+    if(typeof window.google==="object"&&window.google?.translate?.TranslateElement){
+      resolve();
+      return;
+    }
+    const existingScript=q('script[data-google-translate-script="1"]');
+    if(existingScript){
+      existingScript.addEventListener("load",()=>resolve(),{once:true});
+      existingScript.addEventListener("error",()=>reject(new Error("Google Translate script failed to load")), {once:true});
+      return;
+    }
+    window.googleTranslateElementInit=()=>{
+      try{
+        ensureTranslateContainer();
+        new window.google.translate.TranslateElement({
+          pageLanguage:"en",
+          includedLanguages:languageOptions.map(option=>option.code).join(","),
+          autoDisplay:false
+        },"google_translate_element");
+        resolve();
+      }catch(error){
+        reject(error);
+      }
+    };
+    const script=document.createElement("script");
+    script.src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    script.async=true;
+    script.defer=true;
+    script.dataset.googleTranslateScript="1";
+    script.addEventListener("error",()=>reject(new Error("Google Translate script failed to load")), {once:true});
+    document.head.appendChild(script);
+  });
+  return translateReadyPromise;
+}
+async function translateToLanguage(code){
+  const safeCode=normalizeLanguageCode(code);
+  applyDirectionForLanguage(safeCode);
+  setSavedLanguage(safeCode);
+
+  if(safeCode===defaultLanguage){
+    const iframe=q("iframe.goog-te-banner-frame");
+    const reset=q(".goog-te-banner-frame")||iframe;
+    if(reset){
+      window.location.reload();
+    }
+    return;
+  }
+
+  try{
+    if(!translateInitStarted){
+      translateInitStarted=true;
+      ensureTranslateContainer();
+      await loadTranslateScript();
+    }else{
+      await loadTranslateScript();
+    }
+    const combo=await waitForTranslateCombo();
+    if(combo.value!==safeCode){
+      combo.value=safeCode;
+      combo.dispatchEvent(new Event("change"));
+    }
+  }catch(error){
+    console.warn("Translation unavailable:",error);
+    qa("[data-language-status]").forEach(el=>{
+      el.textContent="Translation unavailable right now. Please try again.";
+    });
+  }
+}
+function buildLanguageSwitcherControl(idSuffix){
+  const wrapper=document.createElement("div");
+  wrapper.className="language-switcher";
+  wrapper.innerHTML=`
+    <label class="language-switcher-label" for="language-switcher-${idSuffix}">
+      <span aria-hidden="true">🌐</span>
+      <span>Language</span>
+    </label>
+    <select id="language-switcher-${idSuffix}" class="language-switcher-select" aria-label="Select language">
+      ${languageOptions.map(option=>`<option value="${option.code}">${option.label}</option>`).join("")}
+    </select>
+    <span class="language-switcher-status" data-language-status aria-live="polite"></span>`;
+  return wrapper;
+}
+function bindLanguageSwitcher(){
+  const nav=q(".topbar .nav");
+  if(!nav) return;
+
+  const desktopHost=document.createElement("div");
+  desktopHost.className="language-switcher-host language-switcher-desktop";
+  const desktopControl=buildLanguageSwitcherControl("desktop");
+  desktopHost.appendChild(desktopControl);
+
+  const navCta=q(".topbar .nav-cta");
+  if(navCta){
+    nav.insertBefore(desktopHost,navCta);
+  }else{
+    nav.appendChild(desktopHost);
+  }
+
+  const navLinks=q(".topbar .nav-links");
+  if(navLinks){
+    const mobileHost=document.createElement("div");
+    mobileHost.className="language-switcher-host language-switcher-mobile";
+    const mobileControl=buildLanguageSwitcherControl("mobile");
+    mobileHost.appendChild(mobileControl);
+    navLinks.appendChild(mobileHost);
+  }
+
+  const savedLanguage=getSavedLanguage();
+  qa(".language-switcher-select").forEach(select=>{
+    select.value=savedLanguage;
+    select.addEventListener("change",event=>{
+      const selectedCode=event.target.value;
+      qa(".language-switcher-select").forEach(other=>{other.value=selectedCode;});
+      translateToLanguage(selectedCode);
+    });
+  });
+  translateToLanguage(savedLanguage);
+}
 function year(){qa("[data-year]").forEach(el=>el.textContent=new Date().getFullYear())}
-document.addEventListener("DOMContentLoaded",()=>{bindPopup(); bindSubscribe(); bindContactForm(); bindFilter(); bindMessageTracking(); bindAiConcierge(); year(); updateDemand(); updateActivity(); setInterval(updateDemand,5200); setInterval(updateActivity,4200);});
+document.addEventListener("DOMContentLoaded",()=>{bindPopup(); bindSubscribe(); bindContactForm(); bindFilter(); bindMessageTracking(); bindAiConcierge(); bindLanguageSwitcher(); year(); updateDemand(); updateActivity(); setInterval(updateDemand,5200); setInterval(updateActivity,4200);});
