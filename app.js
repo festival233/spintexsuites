@@ -270,16 +270,31 @@ async function translateToLanguage(code){
 function buildLanguageSwitcherControl(idSuffix){
   const wrapper=document.createElement("div");
   wrapper.className="language-switcher";
+  const isMobile=idSuffix==="mobile";
+  const labelFor=isMobile?"":` for="language-switcher-${idSuffix}"`;
+  const controlMarkup=isMobile
+    ? `<div class="language-switcher-options" role="listbox" aria-label="Select language">
+      ${languageOptions.map(option=>`<button type="button" class="language-switcher-option" data-language-option="${option.code}" role="option" aria-selected="false">${option.label}</button>`).join("")}
+    </div>`
+    : `<select id="language-switcher-${idSuffix}" class="language-switcher-select" aria-label="Select language">
+      ${languageOptions.map(option=>`<option value="${option.code}">${option.label}</option>`).join("")}
+    </select>`;
   wrapper.innerHTML=`
-    <label class="language-switcher-label" for="language-switcher-${idSuffix}">
+    <label class="language-switcher-label"${labelFor}>
       <span aria-hidden="true">🌐</span>
       <span>Language</span>
     </label>
-    <select id="language-switcher-${idSuffix}" class="language-switcher-select" aria-label="Select language">
-      ${languageOptions.map(option=>`<option value="${option.code}">${option.label}</option>`).join("")}
-    </select>
+    ${controlMarkup}
     <span class="language-switcher-status" data-language-status aria-live="polite"></span>`;
   return wrapper;
+}
+function syncLanguageSwitcherUi(selectedCode){
+  qa(".language-switcher-select").forEach(other=>{other.value=selectedCode;});
+  qa("[data-language-option]").forEach(button=>{
+    const isActive=button.dataset.languageOption===selectedCode;
+    button.classList.toggle("active",isActive);
+    button.setAttribute("aria-selected",isActive?"true":"false");
+  });
 }
 function bindLanguageSwitcher(){
   const nav=q(".topbar .nav");
@@ -307,13 +322,24 @@ function bindLanguageSwitcher(){
   }
 
   const savedLanguage=getSavedLanguage();
+  syncLanguageSwitcherUi(savedLanguage);
   qa(".language-switcher-select").forEach(select=>{
-    select.value=savedLanguage;
     select.addEventListener("change",event=>{
       const selectedCode=event.target.value;
-      qa(".language-switcher-select").forEach(other=>{other.value=selectedCode;});
+      syncLanguageSwitcherUi(selectedCode);
       translateToLanguage(selectedCode);
     });
+  });
+  qa("[data-language-option]").forEach(button=>{
+    const applySelectedLanguage=event=>{
+      event.preventDefault();
+      event.stopPropagation();
+      const selectedCode=button.dataset.languageOption;
+      syncLanguageSwitcherUi(selectedCode);
+      translateToLanguage(selectedCode);
+    };
+    button.addEventListener("click",applySelectedLanguage);
+    button.addEventListener("touchstart",applySelectedLanguage,{passive:false});
   });
   translateToLanguage(savedLanguage);
 }
